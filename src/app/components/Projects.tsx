@@ -8,7 +8,7 @@ const projects = [
   {
     title: "Portal Teknologi Pertanian & Biosistem",
     description: "Platform web untuk menampilkan informasi teknologi pertanian dan biosistem. Dibangun dengan React.js dan Express.js, sudah live dan digunakan secara aktif.",
-    image: "/portofolio/portaltpb.png",
+    image: "/portaltpb.png",
     tech: ["Laravel", "MySQL"],
     github: "https://github.com/Neotelemetri-2024/projectTPB",
     live: "https://portal.tpbunand.com/login",
@@ -16,7 +16,7 @@ const projects = [
   {
     title: "RunUp Multi-platform App",
     description: "Aplikasi android dan ios yang dikembangkan menggunakan flutter untuk melakukan tracking aktifitas jalan, jogging, dan bersepeda",
-    image: "/portofolio/runup.png",
+    image: "/runup.png",
     tech: ["Flutter", "Express.Js", "Firebase"],
     github: "https://github.com/mfarzz/runup",
     isMobile: true,
@@ -24,7 +24,7 @@ const projects = [
   {
     title: "Excamotion Mobile App",
     description: "Aplikasi mobile yang dikembangkan dengan Kotlin. Dikelola sebagai Project Manager dengan delivery end-to-end dari konsep hingga rilis.",
-    image: "/portofolio/excamotion.png",
+    image: "/excamotion.png",
     tech: ["Kotlin", "Android Studio"],
     github: "https://github.com/Neotelemetri-2024/ExcaMotion",
     live: null,
@@ -33,7 +33,7 @@ const projects = [
   {
     title: "Health Emergency Operation Center Kabupaten Agam",
     description: "Sistem web untuk mengelola data relawan dan logistik saat terjadi bencana alam di Kabupaten Agam 2025.",
-    image: "/portofolio/heoc.png",
+    image: "/heoc.png",
     tech: ["Laravel", "MySQL"],
     github: "https://github.com/mfarzz/pkdmt_agam",
     live: "https://pkdmt.neotelemetri.id/",
