@@ -2,15 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Sun, Moon, Menu, X } from "lucide-react";
 import { useTheme } from "./ThemeContext";
-
-const tabs = [
-  { label: "Overview", href: "#overview" },
-  { label: "Experience", href: "#experience" },
-  { label: "Projects", href: "#projects" },
-  { label: "Repos", href: "#repositories" },
-  { label: "Skills", href: "#skills" },
-  { label: "Contact", href: "#contact" },
-];
+import { navItems, profile } from "../data/portfolio";
 
 export function Navbar({ activeSection }: { activeSection: string }) {
   const { theme, toggle } = useTheme();
@@ -37,13 +29,13 @@ export function Navbar({ activeSection }: { activeSection: string }) {
       >
         <div className="max-w-[1100px] mx-auto px-4 sm:px-8 h-14 flex items-center justify-between gap-4">
           <a href="#overview" className="font-mono text-sm shrink-0" style={{ color: d ? "#71717a" : "#a1a1aa" }}>
-            <span style={{ color: d ? "#fafafa" : "#18181b" }}>mfarzz</span>.dev
+            <span style={{ color: d ? "#fafafa" : "#18181b" }}>{profile.username}</span>.dev
           </a>
 
           <div className="flex items-center gap-1 sm:gap-2">
             {/* Desktop Tabs */}
             <div className="hidden sm:flex items-center gap-1">
-              {tabs.map((tab) => {
+              {navItems.map((tab) => {
                 const isActive = activeSection === tab.href.slice(1);
                 return (
                   <a
@@ -114,7 +106,7 @@ export function Navbar({ activeSection }: { activeSection: string }) {
             }}
           >
             <div className="flex flex-col gap-4">
-              {tabs.map((tab, i) => (
+              {navItems.map((tab, i) => (
                 <motion.a
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}

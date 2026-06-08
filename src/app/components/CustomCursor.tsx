@@ -13,6 +13,8 @@ export function CustomCursor() {
   const targetRef = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
+    if (!window.matchMedia("(pointer: fine)").matches) return;
+
     const onMove = (e: MouseEvent) => {
       targetRef.current = { x: e.clientX, y: e.clientY };
       if (!visible) setVisible(true);

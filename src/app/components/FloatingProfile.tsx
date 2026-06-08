@@ -3,6 +3,12 @@ import { motion, AnimatePresence } from "motion/react";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { Mail, Github } from "lucide-react";
 import { useTheme } from "./ThemeContext";
+import { floatingProfileLinks, profile } from "../data/portfolio";
+
+const floatingIcons = {
+  mail: Mail,
+  github: Github,
+};
 
 export function FloatingProfile() {
   const { theme } = useTheme();
@@ -34,23 +40,24 @@ export function FloatingProfile() {
             style={{ backgroundColor: cardBg, borderColor: borderC, boxShadow: d ? "0 25px 50px rgba(0,0,0,0.4)" : "0 25px 50px rgba(0,0,0,0.1)" }}
           >
             <div className="w-12 h-12 rounded-xl overflow-hidden border relative transition-colors" style={{ borderColor: borderC, backgroundColor: btnBg }}>
-              <ImageWithFallback src="https://avatars.githubusercontent.com/mfarzz" alt="Muhammad Fariz" className="w-full h-full object-cover" />
+              <ImageWithFallback src={profile.avatarUrl} alt={profile.displayName} className="w-full h-full object-cover" />
             </div>
             <div className="text-center">
-              <div className="text-[11px]" style={{ fontWeight: 500, color: d ? "#fafafa" : "#18181b" }}>Fariz</div>
+              <div className="text-[11px]" style={{ fontWeight: 500, color: d ? "#fafafa" : "#18181b" }}>{profile.lastName}</div>
               <div className="font-mono text-[9px]" style={{ color: d ? "#3f3f46" : "#d4d4d8" }}>Dev</div>
             </div>
             <div className="w-6 h-px" style={{ backgroundColor: borderC }} />
             <div className="flex flex-col gap-2">
-              {[
-                { href: "mailto:mfarix730@gmail.com", icon: Mail },
-                { href: "https://github.com/mfarzz", icon: Github },
-              ].map((link, i) => (
-                <a key={i} href={link.href} target={i === 1 ? "_blank" : undefined}
-                  className="w-8 h-8 rounded-lg border flex items-center justify-center transition-all hover:scale-110"
-                  style={{ backgroundColor: btnBg, borderColor: borderC, color: iconC }}
-                ><link.icon size={13} /></a>
-              ))}
+              {floatingProfileLinks.map((link) => {
+                const Icon = floatingIcons[link.icon];
+
+                return (
+                  <a key={link.href} href={link.href} target={link.external ? "_blank" : undefined} rel={link.external ? "noopener noreferrer" : undefined}
+                    className="w-8 h-8 rounded-lg border flex items-center justify-center transition-all hover:scale-110"
+                    style={{ backgroundColor: btnBg, borderColor: borderC, color: iconC }}
+                  ><Icon size={13} /></a>
+                );
+              })}
             </div>
             <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className="w-8 h-8 rounded-lg border flex items-center justify-center transition-all cursor-pointer hover:scale-110"

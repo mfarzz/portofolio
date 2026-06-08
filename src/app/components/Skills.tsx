@@ -3,34 +3,7 @@ import { motion } from "motion/react";
 import { Divider } from "./Divider";
 import { useTheme } from "./ThemeContext";
 import { getTechColor } from "./techColors";
-
-const skillSections = [
-  {
-    title: "Machine Learning & Data",
-    groups: [
-      { category: "Libraries", pills: ["scikit-learn", "TensorFlow", "Pandas", "NumPy"] },
-      { category: "Visualization", pills: ["Power BI", "Matplotlib", "Seaborn"] },
-      { category: "Techniques", pills: ["Data Mining", "Business Intelligence", "Machine Learning"] },
-      { category: "Languages", pills: ["Python"] },
-    ],
-  },
-  {
-    title: "Web & Mobile",
-    groups: [
-      { category: "Frontend", pills: ["React.js", "Next.js"] },
-      { category: "Backend", pills: ["Express.js", "Laravel", "Flask"] },
-      { category: "Database", pills: ["PostgreSQL", "MySQL"] },
-      { category: "Mobile", pills: ["Flutter", "Dart"] },
-    ],
-  },
-  {
-    title: "Tools & Platforms",
-    groups: [
-      { category: "Version Control", pills: ["Git", "GitHub"] },
-      { category: "Data Tools", pills: ["Pentaho", "Excel", "Google Sheets"] },
-    ],
-  },
-];
+import { skillSections } from "../data/portfolio";
 
 function SkillPill({ name }: { name: string }) {
   const { theme } = useTheme();
@@ -65,7 +38,7 @@ export function Skills() {
       {skillSections.map((section, si) => (
         <div key={si} className={si > 0 ? "mt-12" : ""}>
           <Divider label={section.title} />
-          <div className="grid grid-cols-2 gap-x-8 gap-y-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6">
             {section.groups.map((g, j) => (
               <motion.div
                 key={j}

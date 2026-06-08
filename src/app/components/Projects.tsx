@@ -3,42 +3,7 @@ import { motion } from "motion/react";
 import { Divider } from "./Divider";
 import { ImageWithFallback } from "./figma/ImageWithFallback";
 import { useTheme } from "./ThemeContext";
-
-const projects = [
-  {
-    title: "Portal Teknologi Pertanian & Biosistem",
-    description: "Platform web untuk menampilkan informasi teknologi pertanian dan biosistem. Dibangun dengan React.js dan Express.js, sudah live dan digunakan secara aktif.",
-    image: "/portaltpb.png",
-    tech: ["Laravel", "MySQL"],
-    github: "https://github.com/Neotelemetri-2024/projectTPB",
-    live: "https://portal.tpbunand.com/login",
-  },
-  {
-    title: "RunUp Multi-platform App",
-    description: "Aplikasi android dan ios yang dikembangkan menggunakan flutter untuk melakukan tracking aktifitas jalan, jogging, dan bersepeda",
-    image: "/runup.png",
-    tech: ["Flutter", "Express.Js", "Firebase"],
-    github: "https://github.com/mfarzz/runup",
-    isMobile: true,
-  },
-  {
-    title: "Excamotion Mobile App",
-    description: "Aplikasi mobile yang dikembangkan dengan Kotlin. Dikelola sebagai Project Manager dengan delivery end-to-end dari konsep hingga rilis.",
-    image: "/excamotion.png",
-    tech: ["Kotlin", "Android Studio"],
-    github: "https://github.com/Neotelemetri-2024/ExcaMotion",
-    live: null,
-    isMobile: true,
-  },
-  {
-    title: "Health Emergency Operation Center Kabupaten Agam",
-    description: "Sistem web untuk mengelola data relawan dan logistik saat terjadi bencana alam di Kabupaten Agam 2025.",
-    image: "/heoc.png",
-    tech: ["Laravel", "MySQL"],
-    github: "https://github.com/mfarzz/pkdmt_agam",
-    live: "https://pkdmt.neotelemetri.id/",
-  },
-];
+import { projects } from "../data/portfolio";
 
 export function Projects() {
   const { theme } = useTheme();
@@ -47,7 +12,7 @@ export function Projects() {
   return (
     <div>
       <Divider label="Projects" />
-      <div className="grid grid-cols-2 gap-5">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         {projects.map((p, i) => (
           <motion.div
             key={i}
@@ -82,12 +47,12 @@ export function Projects() {
               <div className="absolute inset-0 z-20 pointer-events-none" style={{ background: `linear-gradient(to top, ${d ? "#111114" : "#ffffff"} 0%, transparent 40%, transparent 100%)` }} />
 
               <div className="absolute top-3 right-3 flex gap-2 opacity-0 group-hover:opacity-100 translate-y-2 group-hover:translate-y-0 transition-all duration-300 z-30">
-                <a href={p.github} target="_blank"
+                <a href={p.github} target="_blank" rel="noopener noreferrer"
                   className="w-8 h-8 rounded-lg backdrop-blur-md border flex items-center justify-center transition-colors shadow-lg"
                   style={{ backgroundColor: d ? "rgba(9,9,11,0.8)" : "rgba(255,255,255,0.8)", borderColor: d ? "#3f3f46" : "#e4e4e7", color: d ? "#fafafa" : "#18181b" }}
                 ><Github size={14} /></a>
                 {p.live && (
-                  <a href={p.live} target="_blank"
+                  <a href={p.live} target="_blank" rel="noopener noreferrer"
                     className="w-8 h-8 rounded-lg backdrop-blur-md border flex items-center justify-center transition-colors shadow-lg"
                     style={{ backgroundColor: d ? "rgba(9,9,11,0.8)" : "rgba(255,255,255,0.8)", borderColor: d ? "#3f3f46" : "#e4e4e7", color: d ? "#fafafa" : "#18181b" }}
                   ><ExternalLink size={14} /></a>
@@ -96,20 +61,20 @@ export function Projects() {
             </div>
             <div className="p-5 -mt-3 relative">
               <div className="text-[15px] mb-1.5 transition-colors" style={{ fontWeight: 500, color: d ? "#fafafa" : "#18181b" }}>{p.title}</div>
-              <p className="text-xs mb-4" style={{ lineHeight: 1.7, color: d ? "#71717a" : "#a1a1aa" }}>{p.description}</p>
+              <p className="text-xs mb-4" style={{ lineHeight: 1.7, color: d ? "#a1a1aa" : "#71717a" }}>{p.description}</p>
               <div className="flex flex-wrap gap-1.5 mb-4">
                 {p.tech.map((t) => (
                   <span key={t} className="font-mono text-[10px] border px-2.5 py-0.5 rounded-md"
-                    style={{ color: d ? "#71717a" : "#a1a1aa", backgroundColor: d ? "#18181b" : "#f4f4f5", borderColor: d ? "#27272a" : "#e4e4e7" }}
+                    style={{ color: d ? "#a1a1aa" : "#71717a", backgroundColor: d ? "#18181b" : "#f4f4f5", borderColor: d ? "#27272a" : "#e4e4e7" }}
                   >{t}</span>
                 ))}
               </div>
-              <div className="flex items-center gap-4">
-                <a href={p.github} target="_blank" className="inline-flex items-center gap-1.5 font-mono text-[11px] transition-colors" style={{ color: d ? "#71717a" : "#a1a1aa" }}>
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+                <a href={p.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 font-mono text-[11px] transition-colors" style={{ color: d ? "#a1a1aa" : "#71717a" }}>
                   <Github size={13} /> Source Code
                 </a>
                 {p.live && (
-                  <a href={p.live} target="_blank" className="inline-flex items-center gap-1.5 font-mono text-[11px] transition-colors" style={{ color: d ? "#71717a" : "#a1a1aa" }}>
+                  <a href={p.live} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 font-mono text-[11px] transition-colors" style={{ color: d ? "#a1a1aa" : "#71717a" }}>
                     <ExternalLink size={13} /> Live Demo
                   </a>
                 )}

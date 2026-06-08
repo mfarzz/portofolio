@@ -3,35 +3,26 @@ import { Mail, Github, Linkedin, Phone } from "lucide-react";
 import { motion } from "motion/react";
 import { Divider } from "./Divider";
 import { useTheme } from "./ThemeContext";
+import { contacts } from "../data/portfolio";
 
-const contacts = [
-  {
-    label: "Email", value: "mfarix730@gmail.com", href: "mailto:mfarix730@gmail.com", icon: Mail,
-    hoverBg: "rgba(239,68,68,0.08)", hoverBorder: "rgba(239,68,68,0.35)", hoverIcon: "#ef4444", hoverGlow: "rgba(239,68,68,0.1)",
-  },
-  {
-    label: "GitHub", value: "github.com/mfarzz", href: "https://github.com/mfarzz", icon: Github,
-    hoverBg: "rgba(168,85,247,0.08)", hoverBorder: "rgba(168,85,247,0.35)", hoverIcon: "#a855f7", hoverGlow: "rgba(168,85,247,0.1)",
-  },
-  {
-    label: "LinkedIn", value: "linkedin.com/in/mfarizz", href: "https://www.linkedin.com/in/mfarizz", icon: Linkedin,
-    hoverBg: "rgba(59,130,246,0.08)", hoverBorder: "rgba(59,130,246,0.35)", hoverIcon: "#3b82f6", hoverGlow: "rgba(59,130,246,0.1)",
-  },
-  {
-    label: "Phone", value: "0895-6233-78313", href: "tel:0895623378313", icon: Phone,
-    hoverBg: "rgba(34,197,94,0.08)", hoverBorder: "rgba(34,197,94,0.35)", hoverIcon: "#22c55e", hoverGlow: "rgba(34,197,94,0.1)",
-  },
-];
+const contactIcons = {
+  mail: Mail,
+  github: Github,
+  linkedin: Linkedin,
+  phone: Phone,
+};
 
-function ContactCard({ c, index }: { c: typeof contacts[0]; index: number }) {
+function ContactCard({ c, index }: { c: typeof contacts[number]; index: number }) {
   const { theme } = useTheme();
   const d = theme === "dark";
   const [hovered, setHovered] = useState(false);
+  const Icon = contactIcons[c.icon];
 
   return (
     <motion.a
       href={c.href}
       target={c.label !== "Email" && c.label !== "Phone" ? "_blank" : undefined}
+      rel={c.label !== "Email" && c.label !== "Phone" ? "noopener noreferrer" : undefined}
       initial={{ opacity: 0, y: 12 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -39,7 +30,7 @@ function ContactCard({ c, index }: { c: typeof contacts[0]; index: number }) {
       whileHover={{ y: -4, scale: 1.02 }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="flex items-center gap-4 border rounded-xl p-5 transition-all duration-300 group"
+      className="flex items-center gap-4 border rounded-xl p-5 transition-all duration-300 group min-w-0"
       style={{
         backgroundColor: hovered ? c.hoverBg : (d ? "#111114" : "#ffffff"),
         borderColor: hovered ? c.hoverBorder : (d ? "#27272a" : "#e4e4e7"),
@@ -52,16 +43,16 @@ function ContactCard({ c, index }: { c: typeof contacts[0]; index: number }) {
         style={{
           backgroundColor: hovered ? c.hoverBg : (d ? "#18181b" : "#f4f4f5"),
           borderColor: hovered ? c.hoverBorder : (d ? "#27272a" : "#e4e4e7"),
-          color: hovered ? c.hoverIcon : (d ? "#71717a" : "#a1a1aa"),
+          color: hovered ? c.hoverIcon : (d ? "#a1a1aa" : "#71717a"),
         }}
       >
-        <c.icon size={16} />
+        <Icon size={16} />
       </motion.div>
-      <div>
+      <div className="min-w-0">
         <div className="font-mono text-[10px] mb-0.5 transition-colors duration-300"
-          style={{ color: hovered ? c.hoverIcon : (d ? "#3f3f46" : "#d4d4d8") }}
+          style={{ color: hovered ? c.hoverIcon : (d ? "#71717a" : "#a1a1aa") }}
         >{c.label}</div>
-        <div className="text-xs transition-colors duration-300" style={{ color: d ? "#fafafa" : "#18181b" }}>{c.value}</div>
+        <div className="text-xs transition-colors duration-300 break-words" style={{ color: d ? "#fafafa" : "#18181b" }}>{c.value}</div>
       </div>
     </motion.a>
   );
@@ -71,7 +62,7 @@ export function Contact() {
   return (
     <div>
       <Divider label="Get In Touch" />
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {contacts.map((c, i) => <ContactCard key={c.label} c={c} index={i} />)}
       </div>
     </div>
