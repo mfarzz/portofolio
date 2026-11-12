@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Kebijakan Privasi Rintas menjelaskan penggunaan data pada mode berbagi langsung dan Google Drive.">
+  <meta name="theme-color" content="#F4F4F6">
+  <link rel="canonical" href="https://mfariz.me/rintas/privacy/">
+  <link rel="icon" href="/rintas/mark-light.png" type="image/png">
+  <title>Kebijakan Privasi Rintas</title>
+  <style>
+    :root{color-scheme:light;--bg:#F4F4F6;--surface:#fff;--ink:#14141E;--muted:#595D69;--line:#C8CBD2;--accent:#258C84}
+    *{box-sizing:border-box;border-radius:0;box-shadow:none}
+    body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 system-ui,-apple-system,"Segoe UI",sans-serif}
+    a{color:#176C66;text-underline-offset:3px}
+    a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+    .wrap{width:min(100% - 40px,800px);margin:auto}
+    header{border-bottom:1px solid var(--line);background:var(--surface)}
+    header .wrap{min-height:80px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+    .brand{display:flex;align-items:center;gap:12px;color:var(--ink);font-size:18px;font-weight:800;letter-spacing:.14em;text-decoration:none}
+    .brand img{width:38px;height:38px;image-rendering:pixelated}
+    .back{font-size:14px;font-weight:650}
+    main{padding:54px 0 90px}
+    .eyebrow{margin:0 0 12px;color:var(--accent);font-size:12px;font-weight:800;letter-spacing:.17em}
+    h1{margin:0;font-size:clamp(34px,6vw,54px);line-height:1.12;letter-spacing:-.045em}
+    .intro{margin:20px 0 0;color:var(--muted);font-size:18px}
+    .meta{margin:30px 0 48px;padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:14px}
+    .meta p{margin:4px 0}
+    section{margin-top:42px}
+    h2{margin:0 0 14px;padding-top:14px;border-top:1px solid var(--line);font-size:24px;line-height:1.25;letter-spacing:-.025em}
+    p{margin:0 0 15px}
+    ul{margin:0 0 16px;padding-left:22px}
+    li{margin:0 0 8px}
+    code{font:13px/1.5 ui-monospace,SFMono-Regular,Consolas,monospace;overflow-wrap:anywhere}
+    footer{padding:26px 0;border-top:1px solid var(--line);background:var(--surface);font-size:14px}
+    footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  </style>
+</head>
+<body>
+  <header><div class="wrap"><a class="brand" href="/rintas/"><img src="/rintas/mark-light.png" alt="">RINTAS</a><a class="back" href="/rintas/">Kembali ke beranda</a></div></header>
+  <main class="wrap">
+    <p class="eyebrow">RINTAS / PRIVASI</p>
+    <h1>Kebijakan Privasi Rintas</h1>
+    <p class="intro">Dokumen ini menjelaskan data yang dipakai aplikasi Windows Rintas ketika pengguna berbagi file langsung dari laptop atau melalui Google Drive miliknya.</p>
+    <div class="meta"><p><strong>Berlaku sejak:</strong> 12 November 2026</p><p><strong>Pengelola:</strong> Muhammad Fariz</p><p><strong>Kontak privasi:</strong> <a href="mailto:mfarix730@gmail.com">mfarix730@gmail.com</a></p></div>
+
+    <section><h2>Data yang diproses</h2>
+      <p>Rintas membaca file yang dipilih pengguna untuk mengetahui nama dan ukuran file serta mengirimkan isinya kepada penerima. Rintas menyalin tautan berbagi ke clipboard. Pada mode langsung, Rintas membuat kunci tautan acak dan menyimpan lokasi file serta waktu kedaluwarsa tautan dalam memori selama sesi aplikasi berjalan.</p>
+      <p>Di komputer pengguna, Rintas menyimpan mode berbagi, alamat domain, masa berlaku bawaan tautan lokal, Google OAuth Client ID aplikasi, dan nama serta ID folder Drive tujuan dalam <code>config.json</code>. Rintas juga menyimpan token pengendali server lokal dalam <code>control.token</code>. Berkas ini berada di folder <code>%LOCALAPPDATA%\FileShareTunnel</code>.</p>
+      <p>Jika pengguna menghubungkan Google Drive, token Google disimpan di <code>google-drive-token.dat</code> dan dienkripsi dengan Windows DPAPI untuk akun Windows yang sedang dipakai. Rintas tidak menyertakan token pengguna dalam paket installer. Log lokal <code>rintas.log</code> dapat berisi waktu aktivitas, nama file yang dibagikan secara langsung, jumlah sesi, alamat tunnel, dan pesan galat.</p>
+    </section>
+
+    <section><h2>Berbagi langsung dari laptop</h2>
+      <p>Rintas memakai Cloudflare Tunnel agar tautan HTTPS dapat mencapai server yang berjalan di laptop pengirim. Permintaan penerima dan isi file melintasi jaringan Cloudflare. File asli tetap di laptop; Rintas tidak mengunggah salinannya ke server milik pengelola Rintas. Laptop dan tunnel harus menyala saat penerima mengunduh. Cloudflare dapat memproses lalu lintas menurut <a href="https://www.cloudflare.com/privacypolicy/">kebijakan privasinya</a>.</p>
+      <p>Halaman unduhan lokal menampilkan nama file, ukuran, dan waktu kedaluwarsa. Server Rintas tidak membuat log khusus alamat IP penerima, memasang cookie pada halaman unduhan, atau menambahkan iklan dan analitik. Siapa pun yang memiliki tautan lengkap dapat mengunduh file sampai tautan berakhir atau dicabut.</p>
+    </section>
+
+    <section><h2>Login dan unggah ke Google Drive</h2>
+      <p>Mode Google Drive hanya dipakai setelah pengguna menekan <strong>Login Google</strong>, memilih akun sendiri di browser, dan menyetujui izin <code>https://www.googleapis.com/auth/drive.file</code>. Izin ini dipakai Rintas untuk membuat folder dan file milik aplikasi di Drive pengguna, mengunggah file yang dipilih, serta membuat izin baca pada file hasil unggahan.</p>
+      <p>Rintas mengunggah salinan file ke folder Rintas di My Drive pengguna. Setelah unggahan selesai, Rintas membuat izin <strong>siapa pun yang memiliki tautan dapat melihat atau mengunduh</strong>, lalu menyalin tautannya. Orang yang menerima tautan dapat melihat nama dan isi file melalui layanan Google Drive. Google memproses data tersebut sesuai <a href="https://policies.google.com/privacy">Kebijakan Privasi Google</a>. Pengelola Rintas tidak menerima salinan file atau token Google pengguna.</p>
+      <p>Rintas menggunakan data Google hanya untuk fungsi berbagi yang dipilih pengguna. Rintas tidak menjual data Google, menggunakannya untuk iklan, atau mengirimkannya ke layanan analitik milik pengelola aplikasi.</p>
+    </section>
+
+    <section><h2>Penyimpanan, masa berlaku, dan penghapusan</h2>
+      <p>Pada mode langsung, tautan aktif disimpan dalam memori dan berhenti saat masa berlaku habis, tautan dicabut, server berhenti, atau pengguna keluar dari Rintas. Masa berlaku bawaan adalah 24 jam dan dapat diubah dari 1 menit hingga 7 hari. Rintas tidak membuat salinan tetap file asli pada mode ini.</p>
+      <p>Pada mode Google Drive, salinan file tetap berada di Drive pengguna sampai pengguna menghapusnya. Masa berlaku dan tombol cabut tautan lokal Rintas <strong>tidak</strong> mengubah izin file Drive. Menutup Rintas atau menghapus file asli di laptop juga tidak menghapus salinan Drive. Pengguna dapat menghapus file atau mengubah izin berbagi langsung di Google Drive.</p>
+      <p>Tombol <strong>Putuskan akun</strong> menghapus token Google yang tersimpan di komputer, tetapi tidak menghapus file Drive atau mencabut izin aplikasi pada akun Google. Pengguna juga dapat mencabut akses Rintas melalui pengaturan keamanan akun Google. Berkas pengaturan dan log lokal tetap ada sampai dihapus pengguna; log belum dihapus otomatis. Rintas tidak dapat menghapus salinan yang sudah diunduh penerima.</p>
+    </section>
+
+    <section><h2>Keamanan dan pilihan pengguna</h2>
+      <p>Pengguna memilih file, mode berbagi, folder tujuan Drive, domain untuk mode langsung, dan kapan tautan lokal dicabut. Token Google dienkripsi untuk akun Windows pengguna. Tautan berbagi harus dikirim hanya kepada orang yang dituju karena siapa pun yang memperoleh tautan lengkap dapat mengakses file sesuai izin yang berlaku. File sensitif sebaiknya tidak diberi izin “siapa pun yang memiliki tautan”.</p>
+      <p>Jika Anda penerima tautan dan ingin meminta akses, koreksi, atau penghapusan file, hubungi pengirimnya. Untuk pertanyaan tentang cara aplikasi memproses data, hubungi <a href="mailto:mfarix730@gmail.com">mfarix730@gmail.com</a>.</p>
+    </section>
+
+    <section><h2>Layanan lain dan perubahan kebijakan</h2>
+      <p>Jika Rintas diperoleh melalui Microsoft Store, data terkait Store, pemasangan, dan pembaruan diproses Microsoft menurut <a href="https://www.microsoft.com/id-id/privacy/privacystatement">Pernyataan Privasi Microsoft</a>. Pemrosesan ini terpisah dari fungsi berbagi Rintas.</p>
+      <p>Kebijakan ini dapat diperbarui ketika cara kerja Rintas berubah. Tanggal berlaku akan diperbarui, dan versi terbaru akan tersedia di alamat halaman ini.</p>
+    </section>
+  </main>
+  <footer><div class="wrap"><span>Rintas · Muhammad Fariz</span><a href="/rintas/">Beranda Rintas</a><a href="mailto:mfarix730@gmail.com">Kontak privasi</a></div></footer>
+</body>
+</html>
