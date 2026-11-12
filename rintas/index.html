@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Rintas adalah aplikasi Windows untuk membagikan file langsung dari laptop atau melalui Google Drive pengguna.">
+  <meta name="theme-color" content="#14141E">
+  <link rel="canonical" href="https://mfariz.me/rintas/">
+  <link rel="icon" href="/rintas/mark-dark.png" type="image/png">
+  <title>Rintas — Bagikan file dengan kendali</title>
+  <style>
+    :root{color-scheme:dark;--bg:#14141E;--panel:#1E1E28;--text:#F4F4F6;--muted:#B9BBC5;--line:#53545E;--accent:#4FD1C5}
+    *{box-sizing:border-box;border-radius:0;box-shadow:none}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--text);font:16px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+    a{color:inherit}
+    a:focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+    .wrap{width:min(100% - 40px,980px);margin:auto}
+    header{border-bottom:1px solid var(--line)}
+    header .wrap{min-height:88px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .brand{display:flex;align-items:center;gap:13px;text-decoration:none;font-weight:800;letter-spacing:.16em;font-size:19px}
+    .brand img{width:42px;height:42px;image-rendering:pixelated}
+    nav{display:flex;gap:24px;flex-wrap:wrap;font-size:14px;font-weight:650}
+    nav a{text-decoration:none}
+    nav a:hover,footer a:hover{text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:4px}
+    .hero{padding:96px 0 88px}
+    .eyebrow{margin:0 0 24px;color:var(--accent);font-size:12px;font-weight:800;letter-spacing:.2em}
+    h1{max-width:830px;margin:0;font-size:clamp(40px,7vw,76px);line-height:1.04;letter-spacing:-.055em}
+    .lead{max-width:650px;margin:28px 0 0;color:var(--muted);font-size:clamp(18px,2.4vw,22px)}
+    .actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:42px}
+    .button{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 20px;border:1px solid var(--text);text-decoration:none;font-size:14px;font-weight:800;letter-spacing:.04em}
+    .button.primary{background:var(--accent);border-color:var(--accent);color:#14141E}
+    .button:hover{background:var(--text);color:#14141E}
+    .button.primary:hover{background:#7BE4DA}
+    section{padding:56px 0;border-top:1px solid var(--line)}
+    h2{margin:0 0 26px;font-size:clamp(27px,4vw,38px);line-height:1.15;letter-spacing:-.035em}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+    .card{padding:28px;border:1px solid var(--line);background:var(--panel)}
+    .card .num{color:var(--accent);font-size:12px;font-weight:800;letter-spacing:.15em}
+    .card h3{margin:18px 0 10px;font-size:22px;line-height:1.2}
+    .card p,.detail{margin:0;color:var(--muted)}
+    .steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:25px}
+    .steps strong{display:block;margin-bottom:8px;color:var(--accent);font-size:13px;letter-spacing:.12em}
+    .steps p{margin:0;color:var(--muted)}
+    footer{padding:30px 0 44px;border-top:1px solid var(--line);color:var(--muted);font-size:14px}
+    footer .wrap{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    @media(max-width:650px){header .wrap{padding:16px 0;align-items:flex-start;flex-direction:column}.hero{padding:70px 0}.grid,.steps{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <header><div class="wrap">
+    <a class="brand" href="/rintas/"><img src="/rintas/mark-dark.png" alt="">RINTAS</a>
+    <nav aria-label="Navigasi utama"><a href="#cara-kerja">Cara kerja</a><a href="/rintas/privacy/">Kebijakan privasi</a></nav>
+  </div></header>
+  <main>
+    <div class="wrap hero">
+      <p class="eyebrow">APLIKASI BERBAGI FILE UNTUK WINDOWS</p>
+      <h1>Bagikan file dari laptop. Pilih cara penerimanya mengakses.</h1>
+      <p class="lead">Rintas membuat tautan berbagi dari menu klik kanan Windows. Gunakan koneksi langsung dari laptop untuk berbagi sementara, atau unggah salinan ke Google Drive milik Anda agar file tersedia ketika laptop mati.</p>
+      <div class="actions"><a class="button primary" href="https://github.com/mfarzz/rintas">Lihat proyek Rintas</a><a class="button" href="/rintas/privacy/">Baca kebijakan privasi</a></div>
+    </div>
+    <section id="cara-kerja"><div class="wrap">
+      <p class="eyebrow">DUA CARA BERBAGI</p>
+      <h2>Anda memilih lokasi file yang dibagikan.</h2>
+      <div class="grid">
+        <article class="card"><span class="num">01 / LANGSUNG</span><h3>Dari laptop</h3><p>File tetap di laptop. Rintas membuat tautan melalui Cloudflare Tunnel. Laptop dan Rintas harus menyala saat penerima mengunduh; kecepatan unduh dipengaruhi kecepatan upload laptop.</p></article>
+        <article class="card"><span class="num">02 / GOOGLE DRIVE</span><h3>Dari Drive Anda</h3><p>Rintas meminta Anda login ke Google, lalu mengunggah salinan ke folder Rintas di Drive Anda. Setelah unggah selesai, penerima dapat membuka tautan walaupun laptop Anda mati. Siapa pun yang memiliki tautan dapat mengakses file tersebut.</p></article>
+      </div>
+    </div></section>
+    <section><div class="wrap">
+      <p class="eyebrow">ALUR SINGKAT</p>
+      <h2>Tiga langkah untuk berbagi.</h2>
+      <div class="steps"><div><strong>01 / PILIH</strong><p>Klik kanan file di Windows atau pilih file dari menu tray Rintas.</p></div><div><strong>02 / BAGIKAN</strong><p>Rintas membuat tautan lokal atau mengunggah file ke Google Drive sesuai mode yang dipilih.</p></div><div><strong>03 / KIRIM</strong><p>Tautan disalin ke clipboard setelah siap. Tempel ke percakapan dengan penerima.</p></div></div>
+    </div></section>
+    <section><div class="wrap"><h2>Privasi dan kendali</h2><p class="detail">Mode langsung menyimpan file hanya di laptop. Mode Google Drive menyimpan salinan di akun Drive pengguna; izin dan penghapusannya dikelola di Drive. Rintas tidak mengirim file atau token Google ke server milik pengelola Rintas. Penjelasan lengkap tersedia di <a href="/rintas/privacy/">Kebijakan Privasi Rintas</a>.</p></div></section>
+  </main>
+  <footer><div class="wrap"><span>Rintas · Muhammad Fariz</span><a href="/rintas/privacy/">Kebijakan privasi</a><a href="mailto:mfarix730@gmail.com">Kontak</a></div></footer>
+</body>
+</html>
